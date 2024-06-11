@@ -1,0 +1,35 @@
+.page_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login_btn {
+  background: rgb(30, 215, 96);
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: 600;
+  width: 10rem;
+  cursor: pointer;
+}
+
+.login_btn:hover {
+  transform: scale(1.05);
+}
+
+.login_btn:active {
+  background: rgb(22, 156, 70);
+}
+
+.error_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.error {
+  color: white;
+}

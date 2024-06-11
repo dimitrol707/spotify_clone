@@ -1,0 +1,56 @@
+.header {
+  color: rgb(179, 179, 179);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 0.5rem;
+}
+
+.header_title {
+  display: flex;
+  gap: 1.5rem;
+  cursor: pointer;
+}
+
+.header_toolbar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.header_title:hover {
+  color: rgb(255, 255, 255);
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filters_toolbar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+}
+
+.filters_toolbar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter_button {
+  border-radius: 1rem;
+  font-weight: 100;
+  padding: 0.2rem 0.5rem;
+  background: rgb(35, 35, 35);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.filter_button.active {
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+.filter_button:hover:not(.active) {
+  background: rgb(42, 42, 42);
+}

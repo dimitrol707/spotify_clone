@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Spotify';
+  src: url('./assets/fonts/CircularSpotifyText-Light.otf') format(opentype);
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Spotify';
+  src: url('./assets/fonts/CircularSpotifyText-Medium.otf') format(opentype);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Spotify';
+  src: url('./assets/fonts/CircularSpotifyText-Bold.otf') format(opentype);
+  font-weight: 600;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: 0;
+  font-family: Spotify;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

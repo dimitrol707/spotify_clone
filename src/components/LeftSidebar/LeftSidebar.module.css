@@ -1,0 +1,33 @@
+.sidebar {
+  min-width: 300px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav_item {
+  padding: 0.5rem 0.7rem;
+}
+
+.nav_link {
+  display: flex;
+  color: rgb(179, 179, 179);
+  transition: color 0.4s;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav_link:hover {
+  color: rgb(255, 255, 255);
+}
+
+.nav_link_active {
+  color: rgb(255, 255, 255);
+}
