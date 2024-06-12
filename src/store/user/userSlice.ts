@@ -15,8 +15,10 @@ export const fetchUserThunk = createAsyncThunk<
   { extra: IThunkExtraArg; rejectValue: ApiError }
 >("user/fetchUser", async (_, { extra, rejectWithValue }) => {
   try {
-    const response = await extra.api.get<IUser>(config.USER_ENDPOINT);
-    return response.data;
+    const user = await extra.fetchAuth<IUser>(config.USER_ENDPOINT, {
+      method: "get",
+    });
+    return user;
   } catch (error) {
     return rejectWithValue(handleError(error) as ApiError);
   }

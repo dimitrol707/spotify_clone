@@ -1,8 +1,7 @@
-import axios from "axios";
 import { base64Encode, generateRandomString, sha256 } from "../utils";
 import config from "./config";
-import { IResponseToken } from "./types";
-import { handleError } from "./utils/handleError";
+import { IErrorAccountsAPI, IResponseToken } from "./types";
+import { ApiError } from "./error";
 
 export const getURLForAuthorize = async (): Promise<[URL, string]> => {
   const codeVerifier = generateRandomString(64);
@@ -25,27 +24,35 @@ export const fetchToken = async (
   codeVerifier: string
 ): Promise<IResponseToken> => {
   try {
-    const response = await axios.post<IResponseToken>(
-      config.TOKEN_ENDPOINT,
-      {
+    const response = await fetch(config.TOKEN_ENDPOINT, {
+      method: "post",
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
         client_id: config.CLIENT_ID,
         grant_type: "authorization_code",
         code,
         redirect_uri: config.REDIRECT_URI,
         code_verifier: codeVerifier,
-      },
-      {
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
+      }),
+    });
 
-    const responseToken = response.data;
+    if (!response.ok) {
+      const errorData = (await response.json()) as IErrorAccountsAPI;
+      throw new ApiError(
+        `${errorData.error}: ${errorData.error_description}`,
+        response.status
+      );
+    }
+
+    const responseToken = (await response.json()) as IResponseToken;
+
     responseToken.start_timestamp = new Date().getTime();
+
     return responseToken;
   } catch (error) {
-    return Promise.reject(handleError(error));
+    return Promise.reject(error);
   }
 };
 
@@ -65,24 +72,32 @@ export const refreshToken = async (
   refreshToken: string
 ): Promise<IResponseToken> => {
   try {
-    const response = await axios.post<IResponseToken>(
-      config.TOKEN_ENDPOINT,
-      {
+    const response = await fetch(config.TOKEN_ENDPOINT, {
+      method: "post",
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
         client_id: config.CLIENT_ID,
         grant_type: "refresh_token",
         refresh_token: refreshToken,
-      },
-      {
-        headers: {
-          "content-type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
+      }),
+    });
 
-    const responseToken = response.data;
+    if (!response.ok) {
+      const errorData = (await response.json()) as IErrorAccountsAPI;
+      throw new ApiError(
+        `${errorData.error}: ${errorData.error_description}`,
+        response.status
+      );
+    }
+
+    const responseToken = (await response.json()) as IResponseToken;
+
     responseToken.start_timestamp = new Date().getTime();
+
     return responseToken;
   } catch (error) {
-    return Promise.reject(handleError(error));
+    return Promise.reject(error);
   }
 };

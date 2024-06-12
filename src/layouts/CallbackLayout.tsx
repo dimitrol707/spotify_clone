@@ -36,7 +36,6 @@ export const CallbackLayout = () => {
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
         const error = params.get("error");
-
         if (error) {
           throw new ApiError(`Authorization error: ${error}`);
         }
@@ -61,7 +60,7 @@ export const CallbackLayout = () => {
 
   const handleToLoginPage = () => {
     dispatch(authActions.clearToken());
-    navigate("/login");
+    navigate("/login", { replace: true });
   };
 
   return (

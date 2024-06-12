@@ -22,7 +22,7 @@ export enum ErrorAPIStatus {
 export interface IErrorAPI {
   error: {
     message: string;
-    status: (typeof ErrorAPIStatus)[keyof typeof ErrorAPIStatus];
+    status: number;
   };
 }
 

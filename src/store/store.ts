@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "./user/userSlice";
-import { api } from "../api/api";
 import { IThunkExtraArg } from "./types";
 import { authReducer } from "./auth/authSlice";
+import { fetchAuth } from "../api/utils/fetchAuth";
 
 const extraArgument: IThunkExtraArg = {
-  api,
+  fetchAuth,
 };
 
 export const store = configureStore({

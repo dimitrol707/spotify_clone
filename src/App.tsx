@@ -4,11 +4,8 @@ import { HomePage } from "./pages/HomePage/HomePage";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { CallbackLayout } from "./layouts/CallbackLayout";
 import { RootLayout } from "./layouts/RootLayout";
-import { useAxiosInterceptors } from "./hooks/useAxiosInterceptors";
 
 function App() {
-  useAxiosInterceptors();
-
   return (
     <Routes>
       <Route element={<RootLayout />}>
